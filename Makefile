@@ -1,12 +1,23 @@
 TARGET = main
-OBJ = main.c parser.c execute.c utils.c
+SRC = main.c parser.c execute.c utils.c
 CFLAGS = -Wall -Wextra -Werror
+OBJ = $(SRC:.c=.o)
 CC = gcc
 
-all:
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f *-o 
+	rm -f $(OBJ)
+
 fclean: clean
 	rm -f $(TARGET)
+
 re: fclean all
+
+.PHONY: all clean fclean re
