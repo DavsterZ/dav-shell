@@ -46,12 +46,13 @@ void repl(char **env)
       built_ins(args, env, initial_directory);
     }
 
+    free_tokens(args);
   }
-
-  free_tokens(args);
 
   if (command)
     free(command);
+  if(initial_directory)
+    free(initial_directory);
 }
 
 
