@@ -41,11 +41,6 @@ void repl(char **env)
 
     args = parse_command(command);
 
-    for(int i = 0; args[i]; i++) {
-      printf("Arg[%i] -> %s", i, args[i]);
-      printf("\n");
-    }
-
     if (args[0])   
     {
       built_ins(args, env, initial_directory);
